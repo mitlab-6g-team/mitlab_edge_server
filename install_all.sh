@@ -1,6 +1,16 @@
 #!/bin/bash
 
 # ==================================
+# User configuration
+# ==================================
+export HARBOR_IP= #ip of deployment
+export HARBOR_USERNAME="admin"
+export HARBOR_PASSWORD="Harbor12345"
+export EMAIL_ADDR="default@default.com"
+export POSTGRES_USER="kong"
+export POSTGRES_PASSWORD="kong"
+
+# ==================================
 # basic dependencies
 # ==================================
 echo ==================================

@@ -27,8 +27,8 @@ docker run -d --name kong-database \
     --network=kong-net \
     -p 5432:5432 \
     -e "POSTGRES_DB=kong" \
-    -e "POSTGRES_USER=kong" \
-    -e "POSTGRES_PASSWORD=kong" \
+    -e "POSTGRES_USER=$POSTGRES_USER" \
+    -e "POSTGRES_PASSWORD=$POSTGRES_PASSWORD" \
     -v kong-db-volume:/var/lib/postgresql/data \
     postgres:11
 
@@ -43,8 +43,8 @@ docker run --rm \
     -e "KONG_DATABASE=postgres" \
     -e "KONG_PG_HOST=kong-database" \
     -e "KONG_PG_DATABASE=kong" \
-    -e "KONG_PG_USER=kong" \
-    -e "KONG_PG_PASSWORD=kong" \
+    -e "KONG_PG_USER=$POSTGRES_USER"" \
+    -e "KONG_PG_PASSWORD=$POSTGRES_PASSWORD" \
     kong:3.4 kong migrations bootstrap
 
 # ==================================
@@ -59,8 +59,8 @@ docker run -d --name kong \
     -e "KONG_DATABASE=postgres" \
     -e "KONG_PG_HOST=kong-database" \
     -e "KONG_PG_DATABASE=kong" \
-    -e "KONG_PG_USER=kong" \
-    -e "KONG_PG_PASSWORD=kong" \
+    -e "KONG_PG_USER=$POSTGRES_USER" \
+    -e "KONG_PG_PASSWORD=$POSTGRES_PASSWORD" \
     -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
     -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
     -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \

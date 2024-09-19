@@ -1,14 +1,5 @@
 #!/bin/bash
 
-# ==================================
-# User configuration
-# ==================================
-HARBOR_IP= #ip of deployment
-HARBOR_USERNAME= 
-HARBOR_PASSWORD=
-EMAIL_ADDR=
-
-
 echo "=================================="
 echo "forbid swap"
 echo "=================================="
