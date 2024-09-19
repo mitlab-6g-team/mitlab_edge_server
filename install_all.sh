@@ -3,7 +3,8 @@
 # ==================================
 # User configuration
 # ==================================
-export HARBOR_IP= #ip of deployment
+export DEPLOYMENT_PLATFORM_IP=  #ip of deployment platform
+export HARBOR_IP= #ip of deployment platform
 export HARBOR_USERNAME="admin"
 export HARBOR_PASSWORD="Harbor12345"
 export EMAIL_ADDR="default@default.com"

@@ -1,11 +1,9 @@
 #!/bin/bash
 
-DEPLOYMENT_PLATFORM_IP= 
-
 # ==================================
 # set docker insecure list
 # ==================================
-cat <<EOR > /etc/docker/daemon.json
+sudo cat <<EOR > /etc/docker/daemon.json
 {
     "insecure-registries" : ["$DEPLOYMENT_PLATFORM_IP", "$DEPLOYMENT_PLATFORM_IP:80"]
 }
@@ -14,8 +12,8 @@ EOR
 # ==================================
 # edit docker.service
 # ==================================
-sudo sed -i '/^ExecStart=/s/^/#/' /lib/systemd/system/docker.service
-sudo sed -i '/^#ExecStart=/a\# ExecStart = \n# ExecStart =/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:35432' /lib/systemd/system/docker.service
+sudo sed -i '/^ExecStart =/s/^/#/' /lib/systemd/system/docker.service
+sudo sed -i '/^#ExecStart =/a\ExecStart = \nExecStart =/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:35432' /lib/systemd/system/docker.service
 
 # ==================================
 # set containerd configuration
