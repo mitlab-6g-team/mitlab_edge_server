@@ -12,7 +12,7 @@ EOR
 # ==================================
 # edit docker.service
 # ==================================
-sudo sed -i '/^ExecStart =/s/^/#/' /lib/systemd/system/docker.service
+sudo sed -i '/^ExecStart=/s/^/#/' /lib/systemd/system/docker.service
 sudo sed -i '/^#ExecStart =/a\ExecStart = \nExecStart =/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:35432' /lib/systemd/system/docker.service
 
 # ==================================
@@ -22,15 +22,11 @@ sudo mkdir -p /etc/containerd
 containerd config default | sudo tee /etc/containerd/config.toml > /dev/null
 
 # mirrors
-sudo sed -i '/^\[plugins."io.containerd.grpc.v1.cri".registry.mirrors\]/a\'\
-"[plugins."io.containerd.grpc.v1.cri".registry.mirrors."$DEPLOYMENT_PLATFORM_IP"]"'\n' \
-"endpoint = ["http://$DEPLOYMENT_PLATFORM_IP"]" /etc/containerd/config.toml
+sudo sed -i '/^\[plugins."io.containerd.grpc.v1.cri".registry.mirrors\]/a\'"[plugins."io.containerd.grpc.v1.cri".registry.mirrors."$DEPLOYMENT_PLATFORM_IP"]"'\n'"endpoint = ["http://$DEPLOYMENT_PLATFORM_IP"]" /etc/containerd/config.toml
 
 
 # configs
-sudo sed -i '/^\[plugins."io.containerd.grpc.v1.cri".registry.configs]/a\' \
-"[plugins."io.containerd.grpc.v1.cri".registry.configs."$DEPLOYMENT_PLATFORM_IP".tls]"'\n' \
-"insecure_skip_verify = true" /etc/containerd/config.toml
+sudo sed -i '/^\[plugins."io.containerd.grpc.v1.cri".registry.configs]/a\' "[plugins."io.containerd.grpc.v1.cri".registry.configs."$DEPLOYMENT_PLATFORM_IP".tls]"'\n'"insecure_skip_verify = true" /etc/containerd/config.toml
 
 # ==================================
 # edit containerd
