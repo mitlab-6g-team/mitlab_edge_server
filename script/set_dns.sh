@@ -22,17 +22,15 @@ sudo mkdir -p /etc/containerd
 containerd config default | sudo tee /etc/containerd/config.toml > /dev/null
 
 # mirrors
-export line1= "[plugins."io.containerd.grpc.v1.cri".registry.mirrors."$DEPLOYMENT_PLATFORM_IP"]"
-export line2="endpoint = ["http://$DEPLOYMENT_PLATFORM_IP"]"
-
-sudo sed -i '/^\[plugins."io.containerd.grpc.v1.cri".registry.mirrors\]/a\'"$line1"'\n'"$line2" /etc/containerd/config.toml
+sudo sed -i '/^\[plugins."io.containerd.grpc.v1.cri".registry.mirrors\]/a\'\
+"[plugins."io.containerd.grpc.v1.cri".registry.mirrors."$DEPLOYMENT_PLATFORM_IP"]"'\n' \
+"endpoint = ["http://$DEPLOYMENT_PLATFORM_IP"]" /etc/containerd/config.toml
 
 
 # configs
-export line3= "[plugins."io.containerd.grpc.v1.cri".registry.configs."$DEPLOYMENT_PLATFORM_IP".tls]"
-export line4='insecure_skip_verify = true'
-
-sudo sed -i '/^\[plugins."io.containerd.grpc.v1.cri".registry.configs]/a\'"$line3"'\n'"$line4" /etc/containerd/config.toml
+sudo sed -i '/^\[plugins."io.containerd.grpc.v1.cri".registry.configs]/a\' \
+"[plugins."io.containerd.grpc.v1.cri".registry.configs."$DEPLOYMENT_PLATFORM_IP".tls]"'\n' \
+"insecure_skip_verify = true" /etc/containerd/config.toml
 
 # ==================================
 # edit containerd
