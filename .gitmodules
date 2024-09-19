@@ -1,0 +1,3 @@
+[submodule "dataflow_mgt"]
+	path = dataflow_mgt
+	url = https://github.com/mitlab-6g-team/edge_server-dataflow_mgt.git
