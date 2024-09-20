@@ -26,7 +26,7 @@ sudo sed -i '/^\[plugins."io.containerd.grpc.v1.cri".registry.mirrors\]/a\'"[plu
 
 
 # configs
-sudo sed -i '/^\[plugins."io.containerd.grpc.v1.cri".registry.configs]/a\' "[plugins."io.containerd.grpc.v1.cri".registry.configs."$DEPLOYMENT_PLATFORM_IP".tls]"'\n'"insecure_skip_verify = true" /etc/containerd/config.toml
+sudo sed -i '/^[plugins."io.containerd.grpc.v1.cri".registry.configs]/a\ [plugins."io.containerd.grpc.v1.cri".registry.configs."$DEPLOYMENT_PLATFORM_IP".tls]\n insecure_skip_verify = true' /etc/containerd/config.toml
 
 # ==================================
 # edit containerd
