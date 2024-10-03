@@ -43,7 +43,7 @@ docker run --rm \
     -e "KONG_DATABASE=postgres" \
     -e "KONG_PG_HOST=kong-database" \
     -e "KONG_PG_DATABASE=kong" \
-    -e "KONG_PG_USER=$POSTGRES_USER"" \
+    -e "KONG_PG_USER=$POSTGRES_USER" \
     -e "KONG_PG_PASSWORD=$POSTGRES_PASSWORD" \
     kong:3.4 kong migrations bootstrap
 
