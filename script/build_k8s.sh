@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source .env.common
+
 echo "=================================="
 echo "forbid swap"
 echo "=================================="
@@ -72,7 +74,7 @@ echo "=================================="
 echo "create harbor-secret"
 echo "=================================="
 kubectl create secret docker-registry harbor-secret \
-    --docker-server=$HARBOR_IP \
+    --docker-server=$DEPLOYMENT_PF_HOST_IP \
     --docker-username=$HARBOR_USERNAME \
     --docker-password=$HARBOR_PASSWORD \
     --docker-email=$EMAIL_ADDR
