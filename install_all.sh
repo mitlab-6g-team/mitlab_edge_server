@@ -19,7 +19,7 @@ sudo apt-get update
 sudo apt update
 
 sudo apt install curl tmux htop net-tools tree ca-certificates git vim openssh-server openssh-client -y
-sudo apt-get install python3.8 python3.8-dev python3.8-distutils python3.8-venv libpython3.8-dev libpq-dev python3-pip -y
+sudo apt-get install python3.9 python3.9-dev python3.9-distutils python3.9-venv libpython3.9-dev libpq-dev python3-pip -y
 
 apt-cache madison docker.io
 sudo apt-get install docker.io=20.10.21-0ubuntu1~20.04.2 -y
